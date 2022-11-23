@@ -5,11 +5,15 @@ import { BrowserRouter, BrowserRouter as Router, Link, Route, Routes } from "rea
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Register from './Components/Register';
+import Notes from './Components/ViewNotes';
+import Login from './Components/Login';
+import AddNotes from './Components/AddNotes';
+import Routing from './Router';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Register/>
+    <BrowserRouter><Routing /></BrowserRouter>
   </React.StrictMode>
 );
 

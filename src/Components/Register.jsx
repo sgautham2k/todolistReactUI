@@ -10,6 +10,7 @@ import axios from "axios";
 import ReactDOM from "react-dom/client";
 import Login from "./Login";
 import swal from 'sweetalert';
+import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 
 const root=ReactDOM.createRoot(document.getElementById("root"));
 export default class Register extends React.Component{
@@ -51,14 +52,15 @@ export default class Register extends React.Component{
             }
             console.log(register);
             
-            axios.post("http://localhost:5115/api/RegisterLogin/NewRegister",register).then(r => {
+            axios.post("http://localhost:5129/api/RegisterLogin/NewRegister",register).then(r => {
                 if(r.data){
                     swal({
-                        title: "Success :)",
+                        title: "Success",
                         text: "New User Registered Successfully!!!",
                         icon: "success",
+                      }).then(()=>{
+                        window.location = '/Login'
                       });
-                    root.render(<Login />);
                 }
                 else{
                     swal({
@@ -68,26 +70,15 @@ export default class Register extends React.Component{
                       });
                 }
             })
-
         }
-    }
-
-    Login=()=>{
-        root.render(<Login/>)
     }
     
     render(){
         return(
             <>
              <header className="header">
-            <div className="left">
-                <div className="space">
-                    <Button type="button" startIcon={<HomeIcon/>} variant="standard">Home</Button>
-                </div>
-            </div>
                 <div className="right">
-                <Button type="button" startIcon={<LoginIcon/>} variant="standard"  onClick={this.Login}>Login</Button>
-                 
+                <Button type="button" startIcon={<LoginIcon/>} variant="standard" onClick={() => {window.location ='/Login'}}>Login</Button>
                 </div>
                 </header>
 
@@ -110,10 +101,11 @@ export default class Register extends React.Component{
                     <TextField variant="standard" label="Password" type={"password"} name="pwd" inputProps={{ maxLength: 8 }} fullWidth onInput={this.Getdata} required/>
                     </div>
                     <div>
-                    <TextField variant="standard" label="ConfirmPassword" type={"password"}  inputProps={{ maxLength: 8 }} name="cpwd" fullWidth onInput={this.Getdata} required/>
-                    </div>     
+                    <TextField variant="standard" label="Confirm Password" type={"password"}  inputProps={{ maxLength: 8 }} name="cpwd" fullWidth onInput={this.Getdata} required/>
+                    </div>   
+                    <br/>  
                     <div className="space">
-                        <Button variant="contained" type="submit" endIcon={<SendIcon />}  color="success" onClick={this.submit}> Register</Button>
+                        <Button variant="contained" type="submit" endIcon={<AppRegistrationIcon/>} color="success" onClick={this.submit}> Register</Button>
                     </div>
                 </form>
             </Box>
